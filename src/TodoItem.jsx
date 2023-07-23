@@ -32,44 +32,54 @@ function TodoItem({ index, todo, deleteTodo, toggleTodo }) {
     };
 
     return (
-        <li>
-            {/* Tampilan berbeda antara mode edit dan mode normal */}
-            {!isEditing ? (
-                <>
-                    {/* Checkbox untuk menandai tugas sebagai selesai atau belum selesai */}
-                    <input
-                        type="checkbox"
-                        checked={todo.completed}
-                        // Fungsi untuk mengubah status tugas saat checkbox diubah
-                        onChange={() => toggleTodo(index, { ...todo, completed: !todo.completed })}
-                    />
-                    {/* Teks tugas yang ditampilkan, gaya tampilannya akan berubah jika tugas sudah selesai */}
-                    <span
-                        style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-                    >
-                        {todo.text}
-                    </span>
-                    {/* Tombol untuk memulai mode edit */}
-                    <button onClick={handleEdit}>Edit</button>
-                    {/* Tombol untuk menghapus tugas */}
-                    <button onClick={() => deleteTodo(index)}>Delete</button>
-                </>
-            ) : (
-                <>
-                    {/* Input teks untuk mengedit tugas */}
-                    <input
-                        type="text"
-                        value={editedText}
-                        // Fungsi untuk memperbarui teks yang diedit saat input berubah
-                        onChange={(e) => setEditedText(e.target.value)}
-                    />
-                    {/* Tombol untuk menyimpan perubahan */}
-                    <button onClick={handleSave}>Save</button>
-                    {/* Tombol untuk membatalkan mode edit */}
-                    <button onClick={handleCancel}>Cancel</button>
-                </>
-            )}
-        </li>
+        <div className='container col-md-12'>
+            <ul className='list-group my-2' >
+                <li className='list-group-item d-flex justify-content-between align-items-center'>
+                    {/* Tampilan berbeda antara mode edit dan mode normal */}
+                    {!isEditing ? (
+                        <>
+                            {/* Teks tugas yang ditampilkan, gaya tampilannya akan berubah jika tugas sudah selesai */}
+                            <span
+                                style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
+                            >
+                                {todo.text}
+                            </span>
+                            <div>
+                                {/* Checkbox untuk menandai tugas sebagai selesai atau belum selesai */}
+                                <input
+                                    type="checkbox"
+                                    className='form-check-input me-2 mt-2'
+                                    checked={todo.completed}
+                                    // Fungsi untuk mengubah status tugas saat checkbox diubah
+                                    onChange={() => toggleTodo(index, { ...todo, completed: !todo.completed })}
+                                />
+                                {/* Tombol untuk memulai mode edit */}
+                                <button className='btn btn-sm btn-primary me-2' onClick={handleEdit}>Edit</button>
+                                {/* Tombol untuk menghapus tugas */}
+                                <button className='btn btn-sm btn-danger' onClick={() => deleteTodo(index)}>Delete</button>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            {/* Input teks untuk mengedit tugas */}
+                            <input
+                                className='form-control form-control-sm'
+                                type="text"
+                                value={editedText}
+                                // Fungsi untuk memperbarui teks yang diedit saat input berubah
+                                onChange={(e) => setEditedText(e.target.value)}
+                            />
+                            {/* Tombol untuk menyimpan perubahan */}
+                            <div className="btn-group" role="group">
+                                <button className="btn btn-success btn-sm mx-2" onClick={handleSave}>Save</button>
+                                <button className="btn btn-danger btn-sm" onClick={handleCancel}>Cancel</button>
+                            </div>
+                        </>
+                    )}
+                </li>
+            </ul>
+
+        </div >
     );
 }
 
