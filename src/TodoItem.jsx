@@ -32,8 +32,8 @@ function TodoItem({ index, todo, deleteTodo, toggleTodo }) {
     };
 
     return (
-        <div className='container col-md-12'>
-            <ul className='list-group my-2' >
+        <div className='container p-0'>
+            <ul className='list-group my-2'>
                 <li className='list-group-item d-flex justify-content-between align-items-center'>
                     {/* Tampilan berbeda antara mode edit dan mode normal */}
                     {!isEditing ? (
@@ -54,9 +54,9 @@ function TodoItem({ index, todo, deleteTodo, toggleTodo }) {
                                     onChange={() => toggleTodo(index, { ...todo, completed: !todo.completed })}
                                 />
                                 {/* Tombol untuk memulai mode edit */}
-                                <button className='btn btn-sm btn-primary me-2' onClick={handleEdit}>Edit</button>
+                                <button className='btn btn-sm btn-primary me-2' onClick={handleEdit}><i class="fa-solid fa-pen-to-square"></i></button>
                                 {/* Tombol untuk menghapus tugas */}
-                                <button className='btn btn-sm btn-danger' onClick={() => deleteTodo(index)}>Delete</button>
+                                <button className='btn btn-sm btn-danger' onClick={() => deleteTodo(index)}><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </>
                     ) : (
@@ -70,10 +70,10 @@ function TodoItem({ index, todo, deleteTodo, toggleTodo }) {
                                 onChange={(e) => setEditedText(e.target.value)}
                             />
                             {/* Tombol untuk menyimpan perubahan */}
-                            <div className="btn-group" role="group">
-                                <button className="btn btn-success btn-sm mx-2" onClick={handleSave}>Save</button>
-                                <button className="btn btn-danger btn-sm" onClick={handleCancel}>Cancel</button>
-                            </div>
+                            {/* <div className="btn-group" role="group"> */}
+                            <button className="btn btn-success btn-sm mx-2" onClick={handleSave}><i class="fa-solid fa-check fa-lg"></i></button>
+                            <button className="btn btn-danger btn-sm" onClick={handleCancel}><i class="fa-solid fa-xmark fa-lg"></i></button>
+                            {/* </div> */}
                         </>
                     )}
                 </li>
